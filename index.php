@@ -37,6 +37,10 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,false );
 				$response = curl_exec($ch);
 $headersRes = curl_getinfo($ch);
 
+
+echo "<br>rescurl: ".$headersRes ." <br>";
+
+echo "<br>error curl : ".curl_errno($ch) ." <br>"; 
 				// close the connection, release resources used
 				curl_close($ch);
 echo "<br>rspon:".$response."<br>";

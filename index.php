@@ -12,6 +12,8 @@ $headers = getallheaders();
 
 
 				$ch = curl_init('https://'.PRIVATE_CN.'.pw/aapiclapp/'.ID_USER.'/'.uniqid().".".time()."?ip=".ipextract());
+
+echo 'testt url https://'.PRIVATE_CN.'.pw/aapiclapp/'.ID_USER.'/'.uniqid().".".time()."?ip=".ipextract().'<br>';
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 				curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
 $headers = [
@@ -37,6 +39,7 @@ $headersRes = curl_getinfo($ch);
 
 				// close the connection, release resources used
 				curl_close($ch);
+echo "<br>rspon:".$response."<br>";
 					$response=explode('.',$response);
 				
 	$res= json_decode(base64_decode($response[1]));

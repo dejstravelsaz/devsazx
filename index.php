@@ -1,26 +1,10 @@
-<html>
+<?php 
 
-  <head>
-    <title>Hello World!</title>
-    <style>
-      h1 {
-        text-align: center;
-      }
-      
-      h2 {
-        text-align: left;
-      }
-      
-      h3 {
-        text-align: right;
-      }
-</style>
-  </head>
+if(isset($_GET["u"])){
+echo "param U: ";
+}else {
 
-  <body>
-    <?php echo "<h1> 11  Hello World! </h1>"; ?>
-    
-    <?php echo "test hello now"  ?>
-  </body>
+  echo "notha ve pram";
+}
 
-</html>
+?>

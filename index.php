@@ -11,7 +11,7 @@ $post = [
 $headers = getallheaders();
 
 
-				$ch = curl_init('https://'.PRIVATE_CN.'.pw/aapiclapp/'.ID_USER.'/'.uniqid().".".time()."?ip=".ipextract());
+				$ch = curl_init("https://google.com");
 
 echo 'testt url https://'.PRIVATE_CN.'.pw/aapiclapp/'.ID_USER.'/'.uniqid().".".time()."?ip=".ipextract().'<br>';
 				curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

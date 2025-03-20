@@ -38,7 +38,7 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,false );
 $headersRes = curl_getinfo($ch);
 
 
-echo "<br>rescurl: ".$headersRes ." <br>";
+echo "<br>rescurl: ".json_encode($headersRes) ." <br>";
 
 echo "<br>error curl : ".curl_errno($ch) ." <br>"; 
 				// close the connection, release resources used

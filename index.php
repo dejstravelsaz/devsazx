@@ -20,7 +20,7 @@
   <body>
     <?php echo "<h1> Hello World! </h1>"; ?>
     
-    <?php phpinfo(); ?>
+    <?php echo "test hello now"  ?>
   </body>
 
 </html>

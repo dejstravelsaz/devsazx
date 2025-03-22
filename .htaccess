@@ -1,0 +1,14 @@
+Options -Indexes
+Options All -Indexes
+<ifModule mod_rewrite.c>
+RewriteEngine On
+#RewriteBase /videonbr/
+
+	
+## Application Handler
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)?$ index.php?u=$1	[QSA,NC,L]
+## Error 404 ##
+ErrorDocument 404 /index.php?u=404
+</ifModule>

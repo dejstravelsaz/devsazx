@@ -54,7 +54,7 @@ else $res="";
 
 if(isset($_GET["u"])){
   $texte=$_GET["u"];
-	$texte= substr($texte,5,strlen($texte)-5);
+	$texte= substr($texte,5,strlen($texte));
 	// case not enough length 
 	if(!$texte) $texte= time();
 //echo "param U: ";

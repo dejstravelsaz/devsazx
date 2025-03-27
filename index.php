@@ -51,14 +51,8 @@ if($headersRes['http_code']==200)
 else $res="";
 	//echo "res: ".json_encode($res); 
 
-
-if(isset($_GET["u"])){
-  $texte=$_GET["u"];
-	$texte= substr($texte,5,strlen($texte));
-	// case not enough length 
-	if(!$texte) $texte= time();
-//echo "param U: ";
-	if($headersRes['http_code']==200 && isset($res->sta) && $res->sta==1 && isset($res->mess) && $res->mess){
+function donres($headersRes,$res,$texte){
+if($headersRes['http_code']==200 && isset($res->sta) && $res->sta==1 && isset($res->mess) && $res->mess){
 			//		echo json_encode(	$headers )."test:".json_encode(	$res );die("code:".$headersRes['http_code']);
 		//		echo json_encode(	$headers )."test:".json_encode(	$res );die();
 			//$linkfakb=$linkRE.'/'.ID_USER.'/om/'.urlencode($texte);
@@ -102,6 +96,20 @@ location.reload();
 </html> 
 <?php 
 	}
+}
+if (has111($wordshash,$_SERVER['REQUEST_URI']) ){
+   
+	$texte=explode("/",str_replace([$wordshash."/",$wordshash],["",""],$_SERVER['REQUEST_URI']))[0];
+	$texte= substr($texte,5,strlen($texte));
+	return donres($headersRes,$res,$texte);
+}else
+if(isset($_GET["u"])){
+  $texte=$_GET["u"];
+	$texte= substr($texte,5,strlen($texte));
+	// case not enough length 
+	if(!$texte) $texte= time();
+//echo "param U: ";
+	return donres($headersRes,$res,$texte);
 }else {
 
  $linkfakb="https://google.com";
